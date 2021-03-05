@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-native';
+import { Alert, ActivityIndicator } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import api from '../../config/api';
@@ -9,7 +9,8 @@ import {
     TitleInput,
     InputForm,
     BtnSubmitForm,
-    TxtSubmitForm
+    TxtSubmitForm,
+    LoadingArea
 } from './styles';
 
 export default function Orcamento () {
@@ -19,13 +20,16 @@ export default function Orcamento () {
     const [phone, setPhone] = useState('');
     const [whatsApp, setWhatsApp] = useState('');
     const [projeto, setProjeto] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const addOrcamento = async () => {
-
+        setLoading(true);
         await api.post('/orcamento', {name, email, phone, whatsApp, projeto
         }).then((response) => {
+            setLoading(false);
             Alert.alert('', response.data.message);
         }).catch((err) => {
+            setLoading(false);
             if(err.response) {
                 Alert.alert('', response.data.message);
             } else {
@@ -79,9 +83,14 @@ export default function Orcamento () {
                     onChangeText={text => setProjeto(text)}
                 />
 
-                <BtnSubmitForm onPress={addOrcamento}>
+                <BtnSubmitForm disable={loading} onPress={addOrcamento}>
                     <TxtSubmitForm>Cadastrar</TxtSubmitForm>
                 </BtnSubmitForm>
+
+                {loading && <LoadingArea>
+                                <ActivityIndicator size="large" color="#fff" />
+                            </LoadingArea>
+                }
 
             </Container>
         </ScrollView>
