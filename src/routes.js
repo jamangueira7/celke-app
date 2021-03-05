@@ -9,10 +9,23 @@ const Stack = createStackNavigator();
 import Orcamento from './pages/Orcamento';
 
 export default function Routes () {
+    const screenOptionStyle = {
+      headerStyle: {
+          backgroundColor: '#050c3d'
+      },
+      headerTintColor: '#00a1fc',
+      headerBackTitle: 'Volta',
+    };
     return (
         <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="Orcamento" component={Orcamento} />
+            <Stack.Navigator screenOptions={screenOptionStyle}>
+                <Stack.Screen
+                    name="Orcamento"
+                    component={Orcamento}
+                    options={{
+                        headerTitle: "Orçamento"
+                    }}
+                    />
             </Stack.Navigator>
         </NavigationContainer>
     );
