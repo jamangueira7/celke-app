@@ -30,7 +30,7 @@ API [aqui](https://github.com/jamangueira7/celke-api)
 Canal [aqui](https://www.youtube.com/channel/UC5ClMRHFl8o_MAaO4w7ZYug)
 
 <p align="center">
-  <img alt="pagina inicial" src=".github/imagem1.PNG" width="300px" height="674px">
+  <img alt="pagina inicial" src=".github/imagem1.PNG" width="300px" height="570px">
 </p>
 
 ## 🚀 Como Rodar
