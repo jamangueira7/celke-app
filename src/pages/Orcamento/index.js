@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { Alert } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+
+import api from '../../config/api';
 
 import {
     Container,
@@ -14,8 +17,22 @@ export default function Orcamento () {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
-    const [whatsApp, setWhatsAppe] = useState('');
+    const [whatsApp, setWhatsApp] = useState('');
     const [projeto, setProjeto] = useState('');
+
+    const addOrcamento = async () => {
+
+        await api.post('/orcamento', {name, email, phone, whatsApp, projeto
+        }).then((response) => {
+            Alert.alert('', response.data.message);
+        }).catch((err) => {
+            if(err.response) {
+                Alert.alert('', response.data.message);
+            } else {
+                Alert.alert('', "Erro: Orçamento não enviado com sucesso, tente mais tarde!");
+            }
+        });
+    }
 
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -32,6 +49,8 @@ export default function Orcamento () {
                 <InputForm
                     placeholder="E-mail"
                     autoCorrect={false}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
                     value={email}
                     onChangeText={text => setEmail(text)}
                 />
@@ -49,7 +68,7 @@ export default function Orcamento () {
                     placeholder="(XX) XXXXX-XXXX"
                     autoCorrect={false}
                     value={whatsApp}
-                    onChangeText={text => setWhatsAppe(text)}
+                    onChangeText={text => setWhatsApp(text)}
                 />
 
                 <TitleInput>Projeto</TitleInput>
@@ -60,7 +79,7 @@ export default function Orcamento () {
                     onChangeText={text => setProjeto(text)}
                 />
 
-                <BtnSubmitForm>
+                <BtnSubmitForm onPress={addOrcamento}>
                     <TxtSubmitForm>Cadastrar</TxtSubmitForm>
                 </BtnSubmitForm>
 
