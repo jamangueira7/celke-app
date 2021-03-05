@@ -24,30 +24,40 @@ export default function Orcamento () {
                 <InputForm
                     placeholder="Nome completo"
                     autoCorrect={false}
+                    value={name}
+                    onChangeText={text => setName(text)}
                 />
 
                 <TitleInput>E-mail</TitleInput>
                 <InputForm
                     placeholder="E-mail"
                     autoCorrect={false}
+                    value={email}
+                    onChangeText={text => setEmail(text)}
                 />
 
                 <TitleInput>Phone</TitleInput>
                 <InputForm
                     placeholder="(XX) XXXXX-XXXX"
                     autoCorrect={false}
+                    value={phone}
+                    onChangeText={text => setPhone(text)}
                 />
 
                 <TitleInput>WhatsApp</TitleInput>
                 <InputForm
                     placeholder="(XX) XXXXX-XXXX"
                     autoCorrect={false}
+                    value={whatsApp}
+                    onChangeText={text => setWhatsAppe(text)}
                 />
 
                 <TitleInput>Projeto</TitleInput>
                 <InputForm
                     placeholder="Fale um pouco do seu projeto"
                     autoCorrect={false}
+                    value={projeto}
+                    onChangeText={text => setProjeto(text)}
                 />
 
                 <BtnSubmitForm>
